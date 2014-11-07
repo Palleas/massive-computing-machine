@@ -1,28 +1,22 @@
 <?php
 
-namespace Facemash;
+namespace Powermash;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
+use Powermash\Marvel\Client;
+
 /**
 * 
 */
-class MarvelServiceProvider extends AnotherClass
+class MarvelServiceProvider implements ServiceProviderInterface
 {
-	protected $key;
-	protected $secret;
-
-	public function __construct($key, $secret)
-	{
-		$this->key = $key;
-		$this->secret = $secret;
-	}
 
 	public function register(Application $app)
 	{
-		$app['marvel.facemash'] = $app->share(function () {
-
+		$app['marvel.facemash'] = $app->share(function () use ($app) {
+			return new Client($app['marvel.api_key'], $app['marvel.api_secret']);
 		});
 	}
 
