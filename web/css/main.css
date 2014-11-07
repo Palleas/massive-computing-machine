@@ -1,0 +1,23 @@
+@font-face { 
+	font-family: "ComicBook";
+	src: "fonts/comic_book/Comic Book.otf";
+}
+
+body {
+	background-color:#f00;
+}
+
+h1, h2 {
+	font-family: ComicBook;
+	text-transform: uppercase;
+	color: #fff;
+	text-align: center;
+}
+
+h1 {
+	font-size: 100px;
+}
+
+h2 {
+	font-size: 80px;
+}
