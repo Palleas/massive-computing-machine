@@ -37,6 +37,12 @@ class Client
 		$response = $this->browser->get($url);
 		$characters = json_decode($response->getContent(), true);
 
-		return reset($characters['data']['results']);
+		$character = reset($characters['data']['results']);
+
+		return [
+			'name' => $character['name'],
+			'description' => $character['description'],
+			'thumbnail' => $character['thumbnail']['path'].'.'.$character['thumbnail']['extension']
+		];
 	}
 }
