@@ -10,30 +10,23 @@ use Buzz\Exception\RequestException;
 */
 class Client
 {
+	const DEFAULT_ENDPOINT = 'http://www.comicvine.com/api/characters';
+
 	protected $apiKey;
+	protected $endpoint;
 	protected $browser;
 
-	public function __construct($key)
+	public function __construct($key, $endpoint = null)
 	{
 		$this->apiKey = $key;
-
+		$this->endpoint = $endpoint ?: self::DEFAULT_ENDPOINT;
 		$this->browser = new Browser();
 	}
 
 	public function randomCharacter()
 	{
-		$url = 'http://www.comicvine.com/api/characters?'.http_build_query([
-				'offset' 		=> mt_rand(0, 87150),
-				'limit' 		=> 1,
-				'format' 		=> 'json',
-				'field_list'	=> 'name,image,publisher,description',
-				'api_key' 		=> $this->apiKey,
-			]);
-
-		$response = $this->browser->get($url);
-		$characters = json_decode($response->getContent(), true);
-
-		$character = reset($characters['results']);
+		$payload = $this->sendRequest('characters', ['offset' => mt_rand(0, 87150), 'limit' => 1]);
+		$character = reset($payload['results']);
 
 		return [
 			'name' => $character['name'],
@@ -41,4 +34,29 @@ class Client
 			'thumbnail' => $character['image']['super_url']
 		];
 	}
+
+	public function sendRequest($ressource, array $parameters = array())
+	{
+		$url = sprintf('%s?%s', $this->endpoint, http_build_query([
+			'format' => 'json',
+			'api_key' => $this->apiKey
+		]));
+
+		$response = $this->browser->get($url);
+		$payload = json_decode($response->getContent(), true);
+
+		if ($error = json_last_error()) {
+			throw new JSONException($error);
+		}
+
+		return $payload;
+	}
+}
+
+/**
+* 
+*/
+class JSONException extends \RuntimeException
+{
+	
 }
