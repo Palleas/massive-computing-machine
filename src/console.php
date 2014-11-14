@@ -16,7 +16,14 @@ $console
     ))
     ->setDescription('My command description')
     ->setCode(function (InputInterface $input, OutputInterface $output) use ($app) {
-        // do something
+        $output->writeln('Fetching characters');
+
+        $characters = $app['comicvine.facemash']->getCharacters();
+        $output->writeln(sprintf('Fetched %d characters', sizeof($characters)));
+
+        foreach ($characters as $character) {
+        	$output->writeln(sprintf('Fetched Character %s', $character['name']));
+        }
     })
 ;
 

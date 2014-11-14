@@ -3,6 +3,7 @@
 namespace Powermash\ComicVine;
 
 use Buzz\Browser;
+use Buzz\Client\Curl;
 use Buzz\Exception\RequestException;
 
 /**
@@ -20,7 +21,13 @@ class Client
 	{
 		$this->apiKey = $key;
 		$this->endpoint = $endpoint ?: self::DEFAULT_ENDPOINT;
-		$this->browser = new Browser();
+		$this->browser = new Browser(new Curl());
+		$this->browser->getClient()->setTimeout(60);
+	}
+
+	public function getCharacters()
+	{
+		return new Collection($this, 'characters');
 	}
 
 	public function randomCharacter()
@@ -37,10 +44,11 @@ class Client
 
 	public function sendRequest($ressource, array $parameters = array())
 	{
-		$url = sprintf('%s?%s', $this->endpoint, http_build_query([
+		$url = sprintf('%s?%s', $this->endpoint, http_build_query(array_merge([
 			'format' => 'json',
 			'api_key' => $this->apiKey
-		]));
+		], $parameters)));
+		echo 'calling url ='.$url;
 
 		$response = $this->browser->get($url);
 		$payload = json_decode($response->getContent(), true);
