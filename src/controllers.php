@@ -18,8 +18,8 @@ $app
 $app
     ->get('/match', function () use ($app) {
         return $app->json([
-            'character_a' => $app['marvel.facemash']->randomCharacter(),
-            'character_b' => $app['marvel.facemash']->randomCharacter(),
+            'character_a' => $app['comicvine.facemash']->randomCharacter(),
+            'character_b' => $app['comicvine.facemash']->randomCharacter(),
         ]);
     })
 ;
