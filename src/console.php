@@ -20,6 +20,12 @@ $console
 
         foreach ($characters as $character) {
         	$output->writeln(sprintf('Fetched Character <info>%s</info>', $character->name));
+        	$app['db']->insert('character', [
+        		'id' => $character->id,
+        		'image' => $character->getImage(),
+        		'name' => $character->name,
+        		'description' => $character->description,
+        	]);
         }
     })
 ;

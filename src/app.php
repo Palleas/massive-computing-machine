@@ -15,6 +15,13 @@ $app->register(new ServiceControllerServiceProvider());
 $app->register(new TwigServiceProvider());
 $app->register(new ComicVineServiceProvider());
 
+$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
+    'db.options' => array(
+        'driver'	=> 'pdo_sqlite',
+        'path'   	=> __DIR__.'/../data/app.db',
+    ),
+));
+
 $app['twig'] = $app->share($app->extend('twig', function($twig, $app) {
     // add custom globals, filters, tags, ...
 

@@ -152,4 +152,20 @@ class Character
 	 * 
 	 */
 	public $volumeCredits;
+
+	public function getImage()
+	{
+		if ($this->image === null) {
+			return null;
+		}
+
+		$sizes = ['super_url', 'medium_url', 'screen_url'];
+		foreach ($sizes as $size) {
+			if (isset($this->image->{$size})) {
+				return $this->image->{$size};
+			}
+		}
+
+		return null;
+	}
 }
