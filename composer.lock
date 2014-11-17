@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "d29d3009771c61e8ddddfcbe979a1c44",
+    "hash": "1d2ec2548c5b536ec95dd2a38decede5",
     "packages": [
         {
             "name": "doctrine/common",
@@ -2014,7 +2014,8 @@
     "minimum-stability": "stable",
     "stability-flags": [],
     "platform": {
-        "php": ">=5.3.3"
+        "php": ">=5.3.3",
+        "ext-sqlite3": "*"
     },
     "platform-dev": []
 }
