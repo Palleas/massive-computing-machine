@@ -6,6 +6,8 @@ use Buzz\Browser;
 use Buzz\Client\Curl;
 use Buzz\Exception\RequestException;
 
+use Mantle\Mantle;
+
 /**
 * 
 */
@@ -27,7 +29,7 @@ class Client
 
 	public function getCharacters()
 	{
-		return new Collection($this, 'characters');
+		return new Collection($this, 'characters', [], 'Powermash\ComicVine\Character');
 	}
 
 	public function randomCharacter()
@@ -50,7 +52,7 @@ class Client
 		], $parameters)));
 
 		$response = $this->browser->get($url);
-		$payload = json_decode($response->getContent(), true);
+		$payload = json_decode($response->getContent(), false);
 
 		if ($error = json_last_error()) {
 			throw new JSONException($error);

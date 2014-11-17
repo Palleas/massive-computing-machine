@@ -2,6 +2,8 @@
 
 namespace Powermash\ComicVine;
 
+use Mantle\Mantle;
+
 /**
 * 
 */
@@ -10,6 +12,7 @@ class Collection implements \Iterator, \Countable
 	protected $client;
 	protected $resource;
 	protected $parameters;
+	protected $model;
 
 	protected $results;
 	protected $offset;
@@ -17,11 +20,12 @@ class Collection implements \Iterator, \Countable
 	protected $limit;
 	protected $position;
 
-	public function __construct(Client $client, $resource, array $parameters = [])
+	public function __construct(Client $client, $resource, array $parameters = [], $model = null)
 	{
 		$this->client = $client;
 		$this->resource = $resource;
 		$this->parameters = $parameters;
+		$this->model = $model;
 
         $this->rewind();
 	}
@@ -37,7 +41,8 @@ class Collection implements \Iterator, \Countable
 
 	public function current()
 	{
-		return $this->results[$this->position];
+		$current = $this->results[$this->position];
+		return $this->model ? Mantle::transform($current, $this->model) : $current;
 	}
 
 	public function key()
@@ -62,9 +67,9 @@ class Collection implements \Iterator, \Countable
 
         $indexResponse = $this->client->sendRequest($this->resource, $this->parameters);
 
-        $this->limit = $indexResponse['limit'];
-        $this->total = $indexResponse['number_of_total_results'];
-        $this->results = $indexResponse['results'];
+        $this->limit = $indexResponse->limit;
+        $this->total = $indexResponse->number_of_total_results;
+        $this->results = $indexResponse->results;
         $this->position = 0;
 	}
 

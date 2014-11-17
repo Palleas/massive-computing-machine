@@ -1,10 +1,9 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
-        "This file is @generated automatically"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "0d8908bbd078e9f3d9b2e736b78da845",
+    "hash": "df90972e682ccbff58ad16dafd239cda",
     "packages": [
         {
             "name": "kriswallsmith/buzz",
@@ -53,6 +52,53 @@
                 "http client"
             ],
             "time": "2014-09-15 12:42:36"
+        },
+        {
+            "name": "mantle/mantle",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kleiram/mantle.git",
+                "reference": "d2e25019aaa9bcbb24c9191af708ee00a6c95907"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kleiram/mantle/zipball/d2e25019aaa9bcbb24c9191af708ee00a6c95907",
+                "reference": "d2e25019aaa9bcbb24c9191af708ee00a6c95907",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/property-access": "~2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Mantle": [
+                        "src",
+                        "tests"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ramon Kleiss",
+                    "email": "ramonkleiss@gmail.com",
+                    "homepage": "https://twitter.com/kleiram",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easy model mapping",
+            "homepage": "https://github.com/kleiram/mantle",
+            "keywords": [
+                "api",
+                "mapping",
+                "models"
+            ],
+            "time": "2014-06-18 17:05:11"
         },
         {
             "name": "monolog/monolog",
@@ -1843,7 +1889,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
-    "prefer-stable": false,
     "platform": {
         "php": ">=5.3.3"
     },
