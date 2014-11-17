@@ -48,7 +48,6 @@ class Client
 			'format' => 'json',
 			'api_key' => $this->apiKey
 		], $parameters)));
-		echo 'calling url ='.$url;
 
 		$response = $this->browser->get($url);
 		$payload = json_decode($response->getContent(), true);
