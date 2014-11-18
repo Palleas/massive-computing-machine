@@ -24,7 +24,8 @@
         "kriswallsmith/buzz": "~0.13",
         "mantle/mantle": "~1.0",
         "doctrine/dbal": "2.2.*",
-        "ext-sqlite3": "*"
+        "ext-sqlite3": "*",
+	"ext-pdo_sqlite": "*"
     },
     "autoload": {
         "psr-0": { "": "src/" }
