@@ -22,7 +22,7 @@ $console
         	$output->writeln(sprintf('Fetched Character <info>%s</info>', $character->name));
 
             $exists = $app['db']->fetchAssoc('SELECT * FROM character WHERE id = ?', array((int) $character->id));
-            if (null === $exists) {
+            if (false === $exists) {
                 $output->writeln("\t> Character does not exist in database: inserting");
 
             	$affected = $app['db']->insert('character', [
