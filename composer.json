@@ -34,7 +34,7 @@
             "dev-master": "1.1.x-dev"
         }
     },
-    "script": {
-        "post-install-cmd": ""
+    "scripts": {
+        "post-install-cmd": "Powermash\\Powermash::setupDatabase"
     }
 }
