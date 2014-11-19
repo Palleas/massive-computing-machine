@@ -1,9 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "0075d251d3cf885f8a6fd7c6d8577ed0",
+    "hash": "dd4a2e6df14850da9e9edec7a0b42db7",
     "packages": [
         {
             "name": "doctrine/common",
@@ -2013,10 +2014,11 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
+    "prefer-stable": false,
     "platform": {
         "php": ">=5.3.3",
         "ext-sqlite3": "*",
-        "ext-pdo_sqlite": "*"
+        "ext-pdo_mysql": "*"
     },
     "platform-dev": []
 }

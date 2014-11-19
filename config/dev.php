@@ -19,3 +19,10 @@ $app->register($p = new WebProfilerServiceProvider(), array(
 $app->mount('/_profiler', $p);
 
 $app['comicvine.api_key'] = '291bd197c96f8f42ba79bd157198a4bbbcb204f1';
+
+$app['db.options'] = [
+    'driver'   => 'pdo_mysql',
+    'dbname'   => 'powermash',
+    'host'     => 'localhost',
+    'user'     => 'root',
+];

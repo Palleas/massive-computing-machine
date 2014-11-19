@@ -21,11 +21,11 @@ $console
         foreach ($characters as $character) {
         	$output->writeln(sprintf('Fetched Character <info>%s</info>', $character->name));
 
-            $exists = $app['db']->fetchAssoc('SELECT * FROM character WHERE id = ?', array((int) $character->id));
+            $exists = $app['db']->fetchAssoc('SELECT * FROM `characters` WHERE id = ?', array((int) $character->id));
             if (false === $exists) {
                 $output->writeln("\t> Character does not exist in database: inserting");
 
-            	$affected = $app['db']->insert('character', [
+            	$affected = $app['db']->insert('characters', [
             		'id' => $character->id,
             		'image' => $character->getImage(),
             		'name' => $character->name,
@@ -36,7 +36,7 @@ $console
             } else {
                 $output->writeln("\t> Character exists in database: updating");
                 
-                $affected = $app['db']->update('character', [
+                $affected = $app['db']->update('characters', [
                     'image' => $character->getImage(),
                     'name' => $character->name,
                     'description' => $character->description,
