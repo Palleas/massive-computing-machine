@@ -23,5 +23,3 @@ $app['db.options'] = [
     'user'     => $username,
     'password' => $password,
 ];
-
-var_dump($app['db.options']); die;
