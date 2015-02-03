@@ -1,0 +1,8 @@
+# behat.yml
+default:
+  # ...
+    extensions:
+        Behat\WebApiExtension: ~
+    suites:
+        default:
+            contexts: ['FeatureContext', 'Behat\WebApiExtension\Context\WebApiContext']
