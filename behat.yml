@@ -2,7 +2,8 @@
 default:
   # ...
     extensions:
-        Behat\WebApiExtension: ~
+        Behat\WebApiExtension:
+            base_url: http://127.0.0.1:8888/index_test.php/
     suites:
         default:
             contexts: ['FeatureContext', 'Behat\WebApiExtension\Context\WebApiContext']
