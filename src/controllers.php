@@ -16,11 +16,11 @@ $app
 ;
 
 $app
-    ->get('/match', function () use ($app) {
+    ->get('/fight', function () use ($app) {
         return $app->json([
             'character_a' => $app['powermash.random_character'](),
             'character_b' => $app['powermash.random_character'](),
-        ]);
+        ], 201);
     })
 ;
 

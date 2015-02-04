@@ -13,7 +13,7 @@ class PowermashServiceProvider implements ServiceProviderInterface
 	public function register(Application $app)
 	{
 		$app['powermash.random_character'] = $app->protect(function () use ($app) {
-			$result =  $app['db']->fetchAssoc('SELECT id, name, image from `characters` WHERE image IS NOT NULL ORDER BY RAND() LIMIT 1');
+			$result =  $app['db']->fetchAssoc('SELECT id, name, image from `characters` WHERE image IS NOT NULL ORDER BY RANDOM() LIMIT 1');
 
 			return $result;
 		});
