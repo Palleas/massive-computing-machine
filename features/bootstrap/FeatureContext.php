@@ -11,6 +11,8 @@ use Behat\Gherkin\Node\TableNode;
  */
 class FeatureContext implements Context, SnippetAcceptingContext
 {
+    protected $app;
+
     /**
      * Initializes context.
      *
@@ -20,6 +22,20 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function __construct()
     {
+        $app = require __DIR__.'/../../src/app.php';
+        require __DIR__.'/../../config/test.php';
+        $this->app = $app;
+    }
+
+    /** @BeforeScenario */
+    public static function prepareForTheFeature() {
+        $schema = __DIR__.'/../../data/schema.db';
+        $target = __DIR__.'/../../data/app_test.db';
+
+        if (file_exists($target)) {
+            unlink($target);
+        }
+        copy($schema, $target);
     }
 
     /**
@@ -28,7 +44,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
     public function weHaveTheFollowingCharacters(TableNode $table)
     {
         foreach ($table as $row) {
-            
+            $this->app['powermash.add_character']($row['id'], $row['name'], $row['picture']);
         }
     }
 }
