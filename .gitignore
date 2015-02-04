@@ -1,3 +1,4 @@
 /vendor/
 
 app.db
+data/app_test.db
